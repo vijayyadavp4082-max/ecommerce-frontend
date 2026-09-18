@@ -1,5 +1,3 @@
-// import React from 'react'
-// import { Link } from 'react-router-dom'
 import { useContext } from "react"
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
@@ -15,139 +13,155 @@ const Navbar = () => {
         navigate("/");
     }
 
-    return (
+      return (
 
-        <nav className="navbar navbar-expand-lg bg-dark navbar-dark shadow-sm">
+    <nav className="navbar navbar-expand-lg bg-dark navbar-dark shadow-sm">
 
-            <div className="container">
+      <div className="container">
 
+
+        <Link
+          className="navbar-brand fw-bold d-flex align-items-center"
+          to="/"
+        >
+
+          <i className="bx bx-shopping-bag fs-3 me-2"></i>
+
+          Amozone
+
+        </Link>
+
+
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#mainNavbar"
+          aria-controls="mainNavbar"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+
+          <span className="navbar-toggler-icon"></span>
+
+        </button>
+
+
+        <div
+          className="collapse navbar-collapse"
+          id="mainNavbar"
+        >
+
+
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+
+
+            <li className="nav-item">
+
+              <Link
+                className="nav-link"
+                to="/"
+              >
+
+                <i className="bx bx-home-alt me-1"></i>
+
+                Home
+
+              </Link>
+
+            </li>
+
+
+            <li className="nav-item">
+
+              <Link
+                className="nav-link"
+                to="/products"
+              >
+
+                <i className="bx bx-store me-1"></i>
+
+                Products
+
+              </Link>
+
+            </li>
+
+
+          </ul>
+
+
+          <div className="d-flex align-items-lg-center gap-2">
+
+
+            {!isAuthenticated ? (
+
+              <>
 
                 <Link
-                    className="navbar-brand fw-bold d-flex align-items-center"
-                    to="/"
+                  to="/login"
+                  className="btn btn-outline-light"
                 >
 
-                    <i className="bx bx-shopping-bag fs-3 me-2"></i>
+                  <i className="bx bx-log-in me-1"></i>
 
-                    Amozone
+                  Login
 
                 </Link>
 
 
-                <button
-                    className="navbar-toggler"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#mainNavbar"
-                    aria-controls="mainNavbar"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation"
+                <Link
+                  to="/register"
+                  className="btn btn-primary"
                 >
 
-                    <span className="navbar-toggler-icon"></span>
+                  <i className="bx bx-user-plus me-1"></i>
+
+                  Register
+
+                </Link>
+
+              </>
+
+            ) : (
+
+              <>
+
+                <span className="text-light me-lg-2">
+
+                  <i className="bx bx-user-circle me-1"></i>
+
+                  Hello, {user.username}
+
+                </span>
+
+
+                <button
+                  className="btn btn-outline-danger"
+                  onClick={handleLogout}
+                >
+
+                  <i className="bx bx-log-out me-1"></i>
+
+                  Logout
 
                 </button>
 
+              </>
 
-                <div
-                    className="collapse navbar-collapse"
-                    id="mainNavbar"
-                >
+            )}
 
 
-                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+          </div>
 
 
-                        <li className="nav-item">
+        </div>
 
-                            <Link
-                                className="nav-link"
-                                to="/"
-                            >
+      </div>
 
-                                <i className="bx bx-home-alt me-1"></i>
+    </nav>
 
-                                Home
-
-                            </Link>
-
-                        </li>
-
-
-                    </ul>
-
-
-                    <div className="d-flex align-items-lg-center gap-2">
-
-
-                        {!isAuthenticated ? (
-
-                            <>
-
-                                <Link
-                                    to="/login"
-                                    className="btn btn-outline-light"
-                                >
-
-                                    <i className="bx bx-log-in me-1"></i>
-
-                                    Login
-
-                                </Link>
-
-
-                                <Link
-                                    to="/register"
-                                    className="btn btn-primary"
-                                >
-
-                                    <i className="bx bx-user-plus me-1"></i>
-
-                                    Register
-
-                                </Link>
-
-                            </>
-
-                        ) : (
-
-                            <>
-
-                                <span className="text-light me-lg-2">
-
-                                    <i className="bx bx-user-circle me-1"></i>
-
-                                    Hello, {user.username}
-
-                                </span>
-
-
-                                <button
-                                    className="btn btn-outline-danger"
-                                    onClick={handleLogout}
-                                >
-
-                                    <i className="bx bx-log-out me-1"></i>
-
-                                    Logout
-
-                                </button>
-
-                            </>
-
-                        )}
-
-
-                    </div>
-
-
-                </div>
-
-            </div>
-
-        </nav>
-
-    );
+  );
 }
 
 export default Navbar

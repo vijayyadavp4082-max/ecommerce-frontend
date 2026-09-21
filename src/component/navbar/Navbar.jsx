@@ -1,24 +1,49 @@
-import { useContext } from "react"
-import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../context/AuthContext";
+import { useContext } from "react";
 
-const Navbar = () => {
+import {
+  Link,
+  useNavigate,
+} from "react-router-dom";
 
-    const { user, isAuthenticated, logout } = useContext(AuthContext);
+import {
+  AuthContext,
+} from "../../context/AuthContext";
 
-    const navigate = useNavigate();
+import {
+  CartContext,
+} from "../../context/CartContext";
 
-    const handleLogout = () => {
-        logout();
-        navigate("/");
-    }
+function Navbar() {
 
-      return (
+  const navigate = useNavigate();
+
+
+  const {
+    user, isAuthenticated, logout,
+  } = useContext(AuthContext);
+
+
+  const {
+    cartCount,
+  } = useContext(CartContext);
+
+
+  const handleLogout = () => {
+
+    logout();
+
+    navigate("/");
+  };
+
+
+  return (
 
     <nav className="navbar navbar-expand-lg bg-dark navbar-dark shadow-sm">
 
       <div className="container">
 
+
+        {/* BRAND */}
 
         <Link
           className="navbar-brand fw-bold d-flex align-items-center"
@@ -31,6 +56,9 @@ const Navbar = () => {
 
         </Link>
 
+
+
+        {/* MOBILE BUTTON */}
 
         <button
           className="navbar-toggler"
@@ -47,11 +75,14 @@ const Navbar = () => {
         </button>
 
 
+
         <div
           className="collapse navbar-collapse"
           id="mainNavbar"
         >
 
+
+          {/* LEFT SIDE */}
 
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
 
@@ -91,6 +122,9 @@ const Navbar = () => {
           </ul>
 
 
+
+          {/* RIGHT SIDE */}
+
           <div className="d-flex align-items-lg-center gap-2">
 
 
@@ -127,6 +161,31 @@ const Navbar = () => {
 
               <>
 
+
+                {/* CART */}
+
+                <Link
+                  to="/cart"
+                  className="btn btn-outline-light"
+                >
+
+                  <i className="bx bx-cart me-1"></i>
+
+                  Cart
+
+
+                  <span className="badge text-bg-danger ms-2">
+
+                    {cartCount}
+
+                  </span>
+
+                </Link>
+
+
+
+                {/* USER */}
+
                 <span className="text-light me-lg-2">
 
                   <i className="bx bx-user-circle me-1"></i>
@@ -135,6 +194,9 @@ const Navbar = () => {
 
                 </span>
 
+
+
+                {/* LOGOUT */}
 
                 <button
                   className="btn btn-outline-danger"
@@ -147,6 +209,7 @@ const Navbar = () => {
 
                 </button>
 
+
               </>
 
             )}
@@ -157,11 +220,13 @@ const Navbar = () => {
 
         </div>
 
+
       </div>
 
     </nav>
 
   );
-}
+};
 
-export default Navbar
+
+export default Navbar;

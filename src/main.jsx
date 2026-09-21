@@ -8,14 +8,15 @@ import App from './App.jsx';
 import { RouterProvider } from 'react-router-dom';
 import { router } from './router/Router.jsx';
 import AuthProvider from './context/AuthContext.jsx';
+import CartProvider from './context/CartContext.jsx';
 
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <AuthProvider>
-
+    <CartProvider>
       <RouterProvider router={router} />
-
+    </CartProvider>
     </AuthProvider>
   </StrictMode>,
 )

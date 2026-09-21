@@ -8,6 +8,7 @@ import Register from '../pages/register/Register'
 import Product from '../pages/product/Products'
 import ProductCard from '../component/productCard/ProductCard'
 import ProductDetails from '../pages/productDetails/ProductDetails'
+import Cart from '../pages/cart/Cart'
 export const router = createBrowserRouter([
     {
         element: <App />,
@@ -30,6 +31,11 @@ export const router = createBrowserRouter([
         {
             path: "/register",
             element: < Register />
+        },
+
+        {
+            path: "/cart",
+            element: < Cart/>
         }
         ]
     }
